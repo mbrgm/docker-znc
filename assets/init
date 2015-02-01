@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+
+chown -R znc /data
+
+
+run () {
+    sudo -u znc -H znc -f --datadir /data
+}
+
+
+makeconf () {
+    sudo -u znc -H znc -f --datadir /data --makeconf
+}
+
+
+help () {
+    echo "help"
+}
+
+
+case "$1" in
+    run)
+        run
+        ;;
+    makeconf)
+        makeconf
+        ;;
+    help)
+        help
+        ;;
+    *)
+        run
+        ;;
+esac
